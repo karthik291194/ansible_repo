@@ -1,0 +1,17 @@
+---
+# Beginning of playbook
+- hosts: web
+  become: yes
+  become_method: sudo
+  tasks:
+    # Prepare system for operational use
+    - name: Install telnet
+      yum:
+        name: telnet
+        state: latest
+
+    - name: Install network utilities
+      yum:
+        name: nmap
+        state: latest
+

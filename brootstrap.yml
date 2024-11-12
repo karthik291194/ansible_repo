@@ -1,0 +1,40 @@
+---
+# Lab exercise
+- hosts: localhost
+  become: yes
+  tasks: 
+    # To edit /etc/hosts
+    - name: Edit /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        line: "ansible.xyzcorp.com 169.168.0.1"
+        state: present
+
+    # Install elinks
+    - name: Install elinks
+      package:
+        name: elinks
+        state: present
+
+    # Create the user xyzcorp_audit
+    - name: Create xyzcorp_audit user
+      user:
+        name: xyzcorp_audit
+        state: present
+
+    # Copy motd and issue files to /etc
+    - name: Copy motd to /etc
+      copy:
+        src: /home/ansible/motd
+        dest: /etc/motd
+
+    - name: Copy issue to /etc
+      copy:
+        src: /home/ansible/issue
+        dest: /etc/issue
+
+- hosts: network
+  become: yes
+  tasks:
+    # Your tasks for the 'network' host group can be added here
+

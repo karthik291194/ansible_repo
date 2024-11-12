@@ -1,0 +1,13 @@
+---
+- hosts: local
+  tasks: 
+    - name: create a file
+      lineinfile: 
+        path: /home/ansible/hostname
+        create: yes
+        line: "{{ansible hostname}}"
+    - name: Ensure hostname file is updated with IP address
+      lineinfile:
+        path: /home/ansible/hostname
+        line: "{{ hostvars['localhost']['ansible_default_ipv4']['address'] }}"
+

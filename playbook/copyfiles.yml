@@ -1,0 +1,13 @@
+---
+- name: Copying files to remote
+  hosts: web
+
+  tasks:
+  - name: Copy files
+    copy:
+      src: /home/karthik/var.yml
+      dest: /home/karthik/backup
+      owner: karthik
+      group: karthik
+      mode: 700
+      backup: true
