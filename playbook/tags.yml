@@ -1,0 +1,23 @@
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Install elinks
+      yum:
+        name: elinks
+        state: latest
+      tags:
+        - software
+    - name: Add a line to text file
+      lineinfile:
+        path: /etc/ansible/playbook/input/tag_test.txt
+        create: yes
+        line: "Tag Called"
+      tags:
+        - files
+        - config
+    - name: copy tag file
+      copy:
+        src: /etc/ansible/playbook/input/tag_test.txt
+        dest: /etc/ansible/playbook/output/copy_test.txt
+      tags:
+        - config

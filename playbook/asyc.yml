@@ -1,0 +1,6 @@
+- hosts: localhost
+  tasks: 
+    - name: Run sleep.sh
+      command: /etc/ansible/playbook/input/sleep.sh
+      async: 60
+      poll: 10 

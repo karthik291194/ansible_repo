@@ -1,0 +1,10 @@
+- hosts: localhost
+  vars_files: 
+    /etc/ansible/playbook/vault
+  tasks:
+    - name: Add secrect key to open.txt
+      lineinfile:
+        path: /etc/ansible/output/open.txt
+        create: yes
+        line: "{{ password }}"
+      no_log: true

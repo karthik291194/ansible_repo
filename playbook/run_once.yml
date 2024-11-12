@@ -1,0 +1,12 @@
+- hosts: localhost
+  tasks:
+    - name: Run sleep.sh
+      command: /etc/ansible/playbook/input/sleep.sh
+      async: 60
+      poll: 10
+      run_once: yes
+    - name: Install elinks
+      package:
+        name: elinks
+        state: latest
+      become: yes

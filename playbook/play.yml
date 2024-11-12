@@ -1,6 +1,6 @@
 ---
 # Beginning of playbook
-- hosts: web
+- hosts: db
   become: yes
   become_method: sudo
   tasks:

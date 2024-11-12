@@ -1,0 +1,13 @@
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Install software
+      yum:
+        name: broke
+        state: latest
+      ignore_errors: yes
+    - name: Run utilities
+      command: /etc/ansible/playbook/input/do_stuff.sh
+      register: cmd_output
+      changed_when: "'CHANGED' in cmd_output.stdout"
+      failed_when: "'FAIL' in cmd_output.stdout"
