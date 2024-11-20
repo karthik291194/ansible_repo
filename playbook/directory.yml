@@ -1,0 +1,19 @@
+---
+- name: Copy a directory from one remote host to another
+  hosts: 172.31.5.192
+  tasks:
+    - name: copying directory from source host to control node
+      synchronize:
+        src: /home/narendra/var  # Source directory on the remote host
+        dest: /tmp/var  # Temporary path on the control node
+        mode: pull  # Pull from remote host to control node
+
+- name: Copy the directory to the destination client
+  hosts: 172.31.2.178
+  tasks:
+    - name: copy directory from control node to destination host
+      synchronize:
+        src: /tmp/var  # Directory on the control node
+        dest: /home/sai  # Destination path on the remote host
+        mode: push
+

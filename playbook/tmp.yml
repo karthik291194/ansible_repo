@@ -1,0 +1,19 @@
+---
+- name: Copy a file from one client to another
+  hosts: 172.31.5.192
+  tasks:
+    - name: Fetch the file from the source client to the control node
+      fetch:
+        src: /tmp/agent.sh
+        dest: /tmp/fetched1_file
+        flat: yes 
+        
+
+- name: Copy the file to the destination client
+  hosts: 172.31.2.178
+  tasks:
+    - name: Copy the file to the destination client
+      copy:
+        src: /tmp/fetched1_file
+        dest: /tmp/agent.sh
+        remote_src: no
